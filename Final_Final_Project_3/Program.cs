@@ -1,3 +1,5 @@
+using Newtonsoft.Json.Linq;
+
 namespace Final_Final_Project_3
 {
     public class Program
@@ -10,6 +12,13 @@ namespace Final_Final_Project_3
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
+
+            builder.Services.AddScoped<string>((s) =>
+            {
+                var key = File.ReadAllText("appsettings.json");
+                string conn = JObject.Parse(key).GetValue("DefaultKey").ToString();
+                return conn;
+            });
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
