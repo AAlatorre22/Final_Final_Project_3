@@ -35,6 +35,6 @@
 
         public string APIResponse { get; set; }
 
-        public List<Movie> MoviesList { get; set; } = new List<Movie>();
+        //public List<Movie> MoviesList { get; set; } = new List<Movie>();
     }
 }

@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using System.Net.Http;
+using System.Collections.Generic;
 
 namespace Final_Final_Project_3
 {
@@ -42,15 +43,15 @@ namespace Final_Final_Project_3
 
             movie.APIResponse = response.Content;
 
-            movie = ParseAllTheMovies(movie);
+           // movie = ParseAllTheMovies(movie);
 
             // Adding parse methods here
 
-            //movie.Title = JArray.Parse(movie.APIResponse)[0]["title"].ToString();
-            //movie.Year = JArray.Parse(movie.APIResponse)[0]["year"].ToString();           
-            //movie.Genre = JArray.Parse(movie.APIResponse)[0]["genre"][0].ToString();
-            //movie.Rank = JArray.Parse(movie.APIResponse)[0]["rank"].ToString();
-            //movie.Rating = JArray.Parse(movie.APIResponse)[0]["rating"].ToString();
+            movie.Title = JArray.Parse(movie.APIResponse)[3]["title"].ToString();
+            movie.Year = JArray.Parse(movie.APIResponse)[3]["year"].ToString();
+            movie.Genre = JArray.Parse(movie.APIResponse)[3]["genre"][0].ToString();
+            movie.Rank = JArray.Parse(movie.APIResponse)[3]["rank"].ToString();
+            movie.Rating = JArray.Parse(movie.APIResponse)[3]["rating"].ToString();
 
 
 
@@ -58,22 +59,34 @@ namespace Final_Final_Project_3
             return movie;
         }
 
-        public static Movie ParseAllTheMovies(Movie movie)
-        {
-            for (int i = 0; i < 100; i++)
-            {
-                var tempMovie = new Movie();
+        //public static Movie ParseAllTheMovies(Movie movie)
+        //{
+        //    for (int i = 0; i < 100; i++)
+        //    {
+        //        var tempMovie = new Movie();
 
-                tempMovie.Title = JArray.Parse(movie.APIResponse)[i]["title"].ToString();
-                tempMovie.Year = JArray.Parse(movie.APIResponse)[i]["year"].ToString();
-                tempMovie.Genre = JArray.Parse(movie.APIResponse)[i]["genre"][0].ToString();
-                tempMovie.Rank = JArray.Parse(movie.APIResponse)[i]["rank"].ToString();
-                tempMovie.Rating = JArray.Parse(movie.APIResponse)[i]["rating"].ToString();
+        //        tempMovie.Title = JArray.Parse(movie.APIResponse)[i]["title"].ToString();
+        //        tempMovie.Year = JArray.Parse(movie.APIResponse)[i]["year"].ToString();
+        //        tempMovie.Genre = JArray.Parse(movie.APIResponse)[i]["genre"][0].ToString();
+        //        tempMovie.Rank = JArray.Parse(movie.APIResponse)[i]["rank"].ToString();
+        //        tempMovie.Rating = JArray.Parse(movie.APIResponse)[i]["rating"].ToString();
 
-                movie.MoviesList.Add(tempMovie);               
-            }
+        //        movie.MoviesList.Add(tempMovie);               
+        //    }
 
-            return movie;
-        }
+        //    return movie;
+        //}
+
+        //public static List<Movie> MoviesList(Movie movie)
+        //{
+        //    var list = new Movie();
+
+            
+        //}
+
+
+
+
+
     }
 }
