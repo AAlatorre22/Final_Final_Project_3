@@ -11,14 +11,18 @@ namespace Final_Final_Project_3
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            var app = builder.Build();
-
             builder.Services.AddScoped<string>((s) =>
             {
                 var key = File.ReadAllText("appsettings.json");
                 string conn = JObject.Parse(key).GetValue("DefaultKey").ToString();
                 return conn;
             });
+
+            builder.Services.AddTransient<IMovieRepository, MovieRepository>();
+
+            var app = builder.Build();
+
+           
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
